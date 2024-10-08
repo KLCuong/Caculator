@@ -9,9 +9,11 @@ import androidx.appcompat.app.AppCompatActivity;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
     Button btn0,btn1,btn2,btn3,btn4,
-    btn5,btn6,btn7,btn8,btn9,btnCE,btnC,btnplus,btnminus
-           ,btnequal,btndiv,btnx,btnBS,btnidk,btndot;
+            btn5,btn6,btn7,btn8,btn9,btnCE,btnC,btnplus,btnminus
+            ,btnequal,btndiv,btnx,btnBS,btnidk,btndot;
     TextView textView,textAnswer;
+    String str,idl;
+    private int wah,hah;
     private String check = "OK";
     @Override
     protected void onCreate(Bundle saved){
@@ -23,7 +25,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private void connectView() {
         textView = (TextView)findViewById(R.id.Textmain);
         textAnswer = (TextView)findViewById(R.id.textAnswer);
-        textAnswer.setText(" ");
+        textAnswer.setText("");
 
         btn0 = (Button)findViewById(R.id.btn0);
         btn1 = (Button)findViewById(R.id.btn1);
@@ -71,8 +73,14 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     @Override
     public void onClick(View v) {
-        String str = textView.getText().toString();
-        String idl;
+
+        idl = textAnswer.getText().toString();
+        if(idl.length() > 0 && wah == 1) wah = 2;
+        if(wah == 2 ){
+            wah = 0;
+            textView.setText("");
+        }
+        str = textView.getText().toString();
         int id = v.getId();
         if (id == R.id.btn0){
             str = str + "0";
@@ -106,6 +114,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             textView.setText(str);
         }else if (id == R.id.btnCE) {
             textView.setText("0");
+            textAnswer.setText("");
         }else if (id == R.id.btnC) {
             if (str.length() > 1) {
                 idl = str.substring(0, str.length()-1);
@@ -136,7 +145,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     textAnswer.setText(av);  // Hiển thị toàn bộ kết quả nếu ít hơn 13 ký tự
                 }
             }
-
+            wah = 1;
         }else {
 
         };
@@ -164,7 +173,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 return Double.parseDouble(expression);
             }
         }else {
-            textView.setText("ERROR");
+            textAnswer.setText("ERROR");
             return 0;
         }
 
