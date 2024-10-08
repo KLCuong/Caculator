@@ -107,7 +107,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         }else if (id == R.id.btnCE) {
             textView.setText("0");
         }else if (id == R.id.btnC) {
-            idl = str.substring(0, str.length()-1);
+            if (str.length() > 1) {
+                idl = str.substring(0, str.length()-1);
+            } else {idl = "0";}
             textView.setText(idl);
         }else if(id == R.id.btnplus){
             str = str + "+";
@@ -127,7 +129,14 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         }else if(id == R.id.btnequal){
             double answer = evaluateExpression(str);
             String av = String.valueOf(answer);
-            if(check.equals("OK")) textAnswer.setText(av.substring(0, 13));
+            if (check.equals("OK")) {
+                if (av.length() > 13) {
+                    textAnswer.setText(av.substring(0, 13));  // Lấy tối đa 13 ký tự nếu có đủ
+                } else {
+                    textAnswer.setText(av);  // Hiển thị toàn bộ kết quả nếu ít hơn 13 ký tự
+                }
+            }
+
         }else {
 
         };
