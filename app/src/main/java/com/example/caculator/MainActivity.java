@@ -26,7 +26,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         textView = (TextView)findViewById(R.id.Textmain);
         textAnswer = (TextView)findViewById(R.id.textAnswer);
         textAnswer.setText("");
-
+        textView.setText("");
         btn0 = (Button)findViewById(R.id.btn0);
         btn1 = (Button)findViewById(R.id.btn1);
         btn2 = (Button)findViewById(R.id.btn2);
@@ -80,6 +80,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             wah = 0;
             textView.setText("");
         }
+
         str = textView.getText().toString();
         int id = v.getId();
         if (id == R.id.btn0){
@@ -146,9 +147,16 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 }
             }
             wah = 1;
-        }else {
+        } else if(id == R.id.btn_idk){
+                if(idl.length()>0) {
+                    String newidl = "-"+idl;
+                    textView.setText(newidl);
+                    double ids = -Double.parseDouble(idl);
+                    textAnswer.setText(String.valueOf(ids));
+                }
+        }else{
 
-        };
+        }
     }
 
 

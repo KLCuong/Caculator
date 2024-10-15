@@ -10,9 +10,11 @@
         android:id="@+id/Textmain"
         android:layout_width="match_parent"
         android:layout_height="111dp"
+        android:layout_gravity="bottom|end"
+        android:gravity="bottom|end"
         android:text="0"
-        android:textAlignment="textEnd"
-        android:textSize="48sp"
+        android:textColor="@android:color/darker_gray"
+        android:textSize="36sp"
         android:textStyle="bold" />
 
     <TextView
